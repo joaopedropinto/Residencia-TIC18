@@ -34,7 +34,6 @@ int main(void){
     cout << "0 tipo char16 t ocupa " << sizeof(letra5) << " bytes na memória.\n"; 
     char32_t letra6= L'c'; // o tipo char32_t é usado para armazenar caracteres unicode 
     cout<<"O tipo char32_t ocupa " << sizeof(letra6) << " bytes na memória.\n"; 
-    
     return 0;
 
 }
