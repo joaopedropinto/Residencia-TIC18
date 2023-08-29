@@ -1,0 +1,2 @@
+Foi realizado a instalação da extensão "Bearded Theme" que realiza configuração de tema da interface do VS Code, em que selecionei a utilização do tema
+"Bearded Theme Vivid Black", que traz algumas tonalidades escuras e com contraste nas funções destacadas.

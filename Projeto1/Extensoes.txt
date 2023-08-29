@@ -1,0 +1,5 @@
+Uma das extensões instaladas é o "C/C++ Compile Run", ela é responsável por realizar a compilação e execução de códigos em C ou C++ de maneira direta, atravéz da
+interação presente no VS Code.
+
+Outra extensão instalada é o Git Lens, que traz diversas funcionalidades do git para os projetos, possibilitando, entre outras coisas, navegar e explorar repositórios
+Git atravéz do VS Code.
