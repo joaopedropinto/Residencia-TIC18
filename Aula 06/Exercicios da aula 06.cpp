@@ -4,6 +4,8 @@ using namespace std;
 
 int main(void){
 
+    setlocale(LC_ALL, "pt_BR.UTF-8");
+    
     char letra;
 
     for (int i = 33; i <= 126 ; i++){
@@ -16,6 +18,9 @@ int main(void){
     cin >> letra;
 
     cout << "\'" << letra << "\'" << " - " << dec << int(letra) << " - " << oct << int(letra) << " - " << hex << int(letra) << endl;
+    
+    
+    
     return 0;
 
 
