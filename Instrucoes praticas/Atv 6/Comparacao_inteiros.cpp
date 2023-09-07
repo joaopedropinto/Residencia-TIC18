@@ -13,7 +13,9 @@ int main(void){
   cin >> b;
   
 
-  (a == b) ? cout << "Estes números são iguais" : (a > b) ? (a % 2 == 0) ? cout << a << " é maior e par" : cout << a << " é maior e impar" : (b % 2 == 0) ? cout << b << " é maior e par" : cout << b << " é maior e impar";
+  (a == b) ? cout << "Estes números são iguais" : 
+  (a > b) ? (a % 2 == 0) ? cout << a << " é maior e par" : cout << a << " é maior e impar" : 
+  (b % 2 == 0) ? cout << b << " é maior e par" : cout << b << " é maior e impar";
 
 
 
