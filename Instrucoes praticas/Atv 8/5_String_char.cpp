@@ -21,13 +21,11 @@ int main()
 
   if (nome1 < nome2)
   {
-    cout << nome1 << endl
-         << nome2 << endl;
+    cout << nome1 << endl << nome2 << endl;
   }
   else
   {
-    cout << nome2 << endl
-         << nome1 << endl;
+    cout << nome2 << endl << nome1 << endl;
   }
 
   return 0;
