@@ -15,9 +15,9 @@ int main(void){
 
     float pif = M_PI;
 
-    double pid = M_PIl;
+    double pid = M_PI;
 
-    long double pilf = M_PIl;
+    long double pilf = M_PI;
 
     std::cout << std::fixed << std::setprecision(22);
     cout << "Pi com o máximo de casas decimais em float(22): " << pif << endl;
