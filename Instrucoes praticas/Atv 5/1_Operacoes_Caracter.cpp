@@ -17,5 +17,6 @@ int main(void){
     cout  << dec << int(ch2) << " - " << oct << int(ch2) << " - " << hex << int(ch2) << " - " << "\'" << ch2 << "\'"  << endl;
 
     cout  << dec << int(ch3) << " - " << oct << int(ch3) << " - " << hex << int(ch3) << " - " << "\'" << ch3 << "\'"  << endl;
+    //Testando alteração
 }
 
