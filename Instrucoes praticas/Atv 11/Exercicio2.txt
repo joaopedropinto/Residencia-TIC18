@@ -1,0 +1,7 @@
+A coesão da função "maxmin" é funcional, pois ela possui uma tarefa específica de encontrar os 
+valores máximo e mínimo de um vetor de inteiros, sendo que todos os comandos utilizados são para 
+alcançar esse objetivo.
+
+Com relação ao aclopamento, ela possui baixo aclopamento por receber os valores que precisa por 
+parâmetro, sem depender de valores globais ou condições específicas. Com isso, ela pode ser 
+reutilizada em qualquer outro momento para realizar a mesma operação outras vezes.
