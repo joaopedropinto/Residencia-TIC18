@@ -4,7 +4,7 @@
 
 using namespace std;
 
-struct Data{
+class Data{
     int dia, mes, ano;
 
     bool setData(string data){
