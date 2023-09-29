@@ -7,12 +7,13 @@ using namespace std;
 class Ponto{
     private:
 
-        float x, y;
+        float x, y, z;
 
     public:
         Ponto(){
             x = 0.0;
             y = 0.0;
+            z = 0.0;
         }
         void setx(float _x){
             x = _x;
@@ -20,11 +21,17 @@ class Ponto{
         void sety(float _y){
             y = _y;
         }
+        void setz(float _z){
+            z = _z;
+        }
         float getx(){
             return x;
         }
         float gety(){
             return y;
+        }
+        float getz(){
+            return z;
         }
 };
 
@@ -48,16 +55,17 @@ class Poligono{
 
 int main(){
     Poligono poli;
-    float valorx, valory;
+    float valorx, valory, valorz;
     cout << "Criando um poligono!" << endl;
     char sn;
     
     do{
-        cout << "Digite as coordenadas x e y do ponto: ";
+        cout << "Digite as coordenadas x, y e z do ponto: ";
         Ponto p;
-        cin >> valorx >> valory;
+        cin >> valorx >> valory >> valorz;
         p.setx(valorx);
         p.sety(valory);
+        p.setz(valorz);
 
         poli.setPoli(p);
 
@@ -68,6 +76,6 @@ int main(){
     cout << "As coordenadas digitadas foram" << endl;
 
     for (Ponto p:poli.getPoli()){
-        cout << "(" << p.getx() << " , " << p.gety() << ")" << endl;
+        cout << "(" << p.getx() << "," << p.gety() << "," << p.getz() << ")" << endl;
     }
 }
