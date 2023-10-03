@@ -8,8 +8,10 @@ class Senha{
 
     public:
         
-        static bool ValidadorSenha(senha){
+        static bool ValidadorSenha(string senha){
 
+            regex senha_valida("(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}$");
+            
             if (regex_match(senha_valida, senha)){
                 return true;
             }else{
@@ -21,7 +23,6 @@ class Senha{
 
 int main(){
 
-    regex senha_valida("(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}$");
     string senha;
     bool result;
 
