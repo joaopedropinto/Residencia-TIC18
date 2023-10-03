@@ -7,10 +7,10 @@
 class BancoDeDados{
     public: 
         static void salvarDados(vector<string> dados){
-
+            
         }
 
-        static vector<string> recuperarDados(){
+        static void recuperarDados(vector<string>){
             
         }
 };
@@ -44,6 +44,7 @@ int main(){
 
     }else{
         cout << "Erro ao abrir arquivo de entrada!" << endl;
+        return 1;
     }
 
     return 0;
