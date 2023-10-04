@@ -4,36 +4,40 @@
 
 using namespace std;
 
-class Senha{
+class Senha
+{
 
-    public:
-        
-        static bool ValidadorSenha(string senha){
+public:
+    static bool ValidadorSenha(string senha)
+    {
 
-            regex senha_valida("(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}$");
-            
-            if (regex_match(senha_valida, senha)){
-                return true;
-            }else{
-                return false;
-            }
+        regex senha_valida("(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}$");
+
+        if (regex_match(senha, senha_valida))
+        {
+            return true;
         }
+        return false;
+    }
 };
 
-
-int main(){
+int main()
+{
 
     string senha;
     bool result;
 
     cout << "Insira uma senha: ";
     cin >> senha;
-    
+
     result = Senha::ValidadorSenha(senha);
-    if(result){
+    if (result)
+    {
         cout << "Senha válida!" << endl;
         return 0;
-    }else{
+    }
+    else
+    {
         cout << "Senha inválda!" << endl;
         return 1;
     }

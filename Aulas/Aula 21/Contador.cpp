@@ -2,26 +2,29 @@
 #include <string>
 #include <vector>
 
+class Contador
+{
+private:
+    static int contador;
 
-class Contador{
-    private:
-        static int contador;
-    public:
-        
-        Contador(){
-            contador++;
-        }
+public:
+    Contador()
+    {
+        contador++;
+    }
 
-        static int getContador(){
-            return contador;
-        }
+    static int getContador()
+    {
+        return contador;
+    }
 };
 
 using namespace std;
 
 int Contador::contador = 0;
 
-int main(){
+int main()
+{
 
     Contador objeto1;
     Contador objeto2;
