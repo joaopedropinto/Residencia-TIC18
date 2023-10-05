@@ -121,7 +121,7 @@ void consultarPreco()
     if (produto.codigo == codigoConsulta)
     {
       cout << "Produto: " << produto.nome << " | Preço: R$ " << produto.preco << endl;
-      break;
+      return;
     }
   }
 
