@@ -4,7 +4,7 @@
 #include <fstream>
 
 
-class BancoDeDados{
+class BancoDeDados {
     public: 
         static void salvarDados(vector<string> dados){
             
@@ -18,16 +18,16 @@ class BancoDeDados{
 using namespace std;
 
 
-int main(){
+int main() {
     ofstream arquivo_saida;
 
     arquivo_saida.open("exemplo.txt", ios_base::out);
 
-    if(arquivo_saida.is_open()){
+    if(arquivo_saida.is_open()) {
         arquivo_saida << "Escrevendo no arquivo." << endl;
         arquivo_saida << 20 + 30 << endl;
         arquivo_saida.close();
-    }else{
+    } else {
         cout << "Erro ao abrir arquivo de saída!" << endl;
         return 1;
     }
@@ -42,7 +42,7 @@ int main(){
         }
         arquivo_entrada.close();
 
-    }else{
+    } else {
         cout << "Erro ao abrir arquivo de entrada!" << endl;
         return 1;
     }
