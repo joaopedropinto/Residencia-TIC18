@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <regex>
 
 using namespace std;
 
@@ -38,20 +39,30 @@ void inserirProduto()
   }
 
   Produto novoProduto;
+  regex cod_valido("\\d{13}");
+  
+  while(true){
 
-  cout << "Digite o código do produto (13 caracteres): ";
-  cin >> novoProduto.codigo;
+    cout << "Digite o código do produto (13 caracteres): ";
+    cin >> novoProduto.codigo;
+    if(regex_match(novoProduto.codigo,cod_valido)){
+      break;
+    }else{
+      cout << "Código inválido, tente novamente!" << endl;
+    }
+  }
 
   cout << "Digite o nome do produto (até 20 caracteres): ";
   cin.ignore();
   getline(cin, novoProduto.nome);
 
-  cout << "Digite o preço do produto (com duas casas decimais): R$ ";
-  cin >> novoProduto.preco;
 
   if (!testeProduto(novoProduto.codigo, novoProduto.nome))
   {
 
+    cout << "Digite o preço do produto (com duas casas decimais): R$ ";
+    cin >> novoProduto.preco;
+    
     produtos.push_back(novoProduto);
     cout << "Produto cadastrado com sucesso!" << endl;
     return;

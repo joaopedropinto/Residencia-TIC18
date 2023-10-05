@@ -61,7 +61,7 @@ double calcularMediaIdade(const Viagem &viagem)
 int encontrarViagemMaisRentavel(const vector<Viagem> &viagens)
 {
   double receitaMaxima = 0.0;
-  int horarioMaisRentavel = -1; 
+  int horarioMaisRentavel = -1; // Inicializa com um valor que não corresponde a uma viagem válida
 
   for (const Viagem &viagem : viagens)
   {
@@ -78,8 +78,9 @@ int encontrarViagemMaisRentavel(const vector<Viagem> &viagens)
 
 int main()
 {
-  srand(time(0)); 
+  srand(time(0)); // Inicializa a semente para gerar números aleatórios
 
+  // Simulando dados de vendas para várias viagens (números de passagens vendidas para cada viagem)
   vector<Viagem> viagens;
 
   for (int i = 0; i < 5; i++)
@@ -91,8 +92,8 @@ int main()
     {
       Passageiro passageiro;
       passageiro.nome = "Passageiro " + to_string(j + 1);
-      passageiro.idade = rand() % 60 + 20; 
-      passageiro.poltrona = j + 1;         
+      passageiro.idade = rand() % 60 + 20; // Idade aleatória entre 20 e 69 anos
+      passageiro.poltrona = j + 1;         // Número da poltrona
       viagem.passageiros.push_back(passageiro);
     }
 
@@ -107,8 +108,8 @@ int main()
 
   cout << "Total arrecadado no mês: $" << calcularTotalArrecadadoNoMes(viagens) << endl;
 
-  int viagemParaConsultar = rand() % 5 + 1;  // Número da viagem que deseja consultar.
-  int assentoParaConsultar = rand() % 20 + 1; // Número da poltrona que deseja consultar.
+  int viagemParaConsultar = rand() % 5 + 1;  // Substitua pelo número da viagem que deseja consultar.
+  int assentoParaConsultar = rand() % 20 + 1; // Substitua pelo número da poltrona que deseja consultar.
   cout << "Nome do passageiro da poltrona " << assentoParaConsultar << " na viagem " << viagemParaConsultar << ": "
        << obterNomePassageiro(viagens[viagemParaConsultar - 1], assentoParaConsultar) << endl;
 

@@ -1,59 +1,41 @@
 #include <iostream>
-#include <vector>
-#include <string>
 
 using namespace std;
 
-struct Passageiro {
-    int numero_assento;
-    string data_hora;
-    string cpf;
-    string nome;
-    int idade;
-};
+string caracteres_comuns(string &A, string &B)
+{
+    string C;
 
-struct Viagem {
-    int numero_viagem;
-    string data;
-    string horario;
-    vector<Passageiro> passagens_vendidas;
-};
+    for (int i = 0; i < A.length(); i++)
+    {
+        char caractere = A[i];
+        bool encontrado = false;
 
-void vender_passagem(Viagem& viagem, int numero_assento, string data_hora, string cpf, string nome, int idade) {
-    Passageiro passagem;
-    passagem.numero_assento = numero_assento;
-    passagem.data_hora = data_hora;
-    passagem.cpf = cpf;
-    passagem.nome = nome;
-    passagem.idade = idade;
-    viagem.passagens_vendidas.push_back(passagem);
-}
+        for (int j = 0; j < B.length(); j++)
+        {
+            if (B[j] == caractere && isalpha(B[j]))
+            {
+                encontrado = true;
+                break;
+            }
+        }
 
-int total_arrecadado(const Viagem& viagem) {
-    return viagem.passagens_vendidas.size() * 80;
-}
-
-string nome_passageiro_por_assento(const Viagem& viagem, int numero_assento) {
-    for (const Passageiro& passagem : viagem.passagens_vendidas) {
-        if (passagem.numero_assento == numero_assento) {
-            return passagem.nome;
+        if (encontrado && C.find(caractere) == string::npos)
+        {
+            C += caractere;
         }
     }
-    return "Assento vazio";
+
+    return C;
 }
 
-int main() {
-    Viagem viagem;
-    viagem.numero_viagem = 1;
-    viagem.data = "03/10/2023";
-    viagem.horario = "08:00";
+int main()
+{
+    string A = "Olá tudo bem", B = "Sim, estou", C;
 
-    vender_passagem(viagem, 1, "03/10/2023 07:30", "1234567890", "João", 30);
-    vender_passagem(viagem, 2, "03/10/2023 07:45", "9876543210", "Maria", 25);
+    C = caracteres_comuns(A, B);
 
-    cout << "Total arrecadado para a viagem: R$" << total_arrecadado(viagem) << endl;
-    cout << "Nome do passageiro da poltrona 1: " << nome_passageiro_por_assento(viagem, 1) << endl;
-    cout << "Nome do passageiro da poltrona 2: " << nome_passageiro_por_assento(viagem, 2) << endl;
+    cout << "Caracteres comuns em A e B: " << C << endl;
 
     return 0;
 }
