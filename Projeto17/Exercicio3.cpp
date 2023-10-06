@@ -4,7 +4,7 @@
 
 using namespace std;
 
-// Classe Produto: Representa um produto com nome, preço e código.
+// Classe Produto: Representa um produto com nome, preço e codigo.
 class Produto {
 private:
     string nome;
@@ -170,11 +170,11 @@ int main() {
 
     carrinho.removerProduto(arroz, 1);
 
-    cout << "Valor total após remoção: " << carrinho.calcularValorTotal() << endl; // 21.5
+    cout << "Valor total apos remoção: " << carrinho.calcularValorTotal() << endl; // 21.5
 
     carrinho.esvaziarCarrinho();
 
-    cout << "Valor total após esvaziar o carrinho: " << carrinho.calcularValorTotal() << endl; // 0.0
+    cout << "Valor total apos esvaziar o carrinho: " << carrinho.calcularValorTotal() << endl; // 0.0
 
     carrinho.adicionarProduto(chocolate, 10);
     //cout << "Quantidade de chocolates no carrinho: " << carrinho.getQuantidadeProduto(p4) << endl;

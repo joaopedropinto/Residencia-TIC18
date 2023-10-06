@@ -19,7 +19,7 @@ void adicionarLivro(vector<Livro>& biblioteca) {
     cout << "\nDigite o titulo do livro: ";
     cin.ignore();
     getline(cin, novoLivro.titulo);
-    cout << "Digite o número de páginas: ";
+    cout << "Digite o numero de paginas: ";
     cin >> novoLivro.numeroPagina;
     cin.ignore();
     cout << "Digite o autor do livro: ";
@@ -37,10 +37,10 @@ void listarLivros(const vector<Livro>& biblioteca) {
     } else {
         cout << "\nLivros na Biblioteca:";
         for (const auto& livro : biblioteca) {
-            cout << "\n- Título: " << livro.titulo;
-            cout << "\n  Número de Páginas: " << livro.numeroPagina;
+            cout << "\n- Titulo: " << livro.titulo;
+            cout << "\n  Numero de Paginas: " << livro.numeroPagina;
             cout << "\n  Autor: " << livro.autor;
-            cout << "\n  Ano de Publicação: " << livro.anoPublicacao << endl;
+            cout << "\n  Ano de Publicacao: " << livro.anoPublicacao << endl;
         }
     }
     cout << endl;
@@ -55,10 +55,10 @@ void pesquisarLivro(const vector<Livro>& biblioteca) {
     for (const auto& livro : biblioteca) {
         if (livro.titulo == titulo) {
             cout << "Livro encontrado:\n";
-            cout << "Título: " << livro.titulo << endl;
-            cout << "Número de Páginas: " << livro.numeroPagina << endl;
+            cout << "Titulo: " << livro.titulo << endl;
+            cout << "Numero de Paginas: " << livro.numeroPagina << endl;
             cout << "Autor: " << livro.autor << endl;
-            cout << "Ano de Publicação: " << livro.anoPublicacao << endl;
+            cout << "Ano de Publicacao: " << livro.anoPublicacao << endl;
             return;  // Encerra a função quando o livro é encontrado
         }
     }
@@ -93,7 +93,7 @@ void atualizarTituloLivro(vector<Livro>& biblioteca) {
             getline(cin, novoTitulo);
             livro.titulo = novoTitulo;
             cout << "Titulo atualizado com sucesso!\n";
-            return;  // Encerra a função depois da atualização
+            return;  // Encerra a função depois da atualizacao
         }
     }
     cout << "Livro nao encontrado!\n";
@@ -108,10 +108,10 @@ int main() {
         cout << "1. Adicionar livro " << endl;
         cout << "2. Listar livros" << endl;
         cout << "3. Pesquisar livro" << endl;
-        cout << "4. Atualizar título de livro" << endl;
+        cout << "4. Atualizar titulo de livro" << endl;
         cout << "5. Remover livro" << endl;
         cout << "0. Sair." << endl;
-        cout << "Escolha uma opção: ";
+        cout << "Escolha uma opcao: ";
 
         int opcao;
         cin >> opcao;
@@ -136,7 +136,7 @@ int main() {
                 cout << "Programa finalizado!" << endl;
                 return 0;
             default:
-                cout << "Informe uma opção válida!" << endl;
+                cout << "Informe uma opcao valida!" << endl;
                 break;
         }
     }
