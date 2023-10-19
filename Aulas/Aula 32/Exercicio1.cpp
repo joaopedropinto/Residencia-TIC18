@@ -3,7 +3,7 @@
 #include <string>
 #include <iomanip>
 #include <cmath>
-
+#include <vector>
 using namespace std;
 
 // Classe abstrata para representar uma conta 
@@ -13,9 +13,9 @@ class Conta {
         string num_Conta;
         string nome_Correntista;
         double saldo;
+        vector<Transacao> transacoes;
 
     public:
-        Transacoes *transacoes;
         virtual ~Conta() {
         }
 
@@ -94,7 +94,7 @@ class Conta_Corrente_Limite : public Conta {
         }
 };
 
-class Transacoes {
+class Transacao {
     private:
         string data, descricao;
         double valor_trans;
