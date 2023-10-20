@@ -8,8 +8,8 @@ using namespace std;
 
 // Classe abstrata para representar uma conta 
 class Conta {
+
     protected: 
-    
         string num_Conta;
         string nome_Correntista;
         double saldo;
