@@ -1,0 +1,10 @@
+Existe uma relação de Composição entre as classes Dependente e Cliente, de modo que a classe Dependente
+é parte da classe Cliente, e nesse contexto não pode existir sem ela. Essa relação não existe no sentido
+oposto, pois Cliente pode existir sem o Dependente.
+
+É notada uma relação de Herança entre as classes Evento e Roteiro, Deslocamento e Pernoite, em que todas
+elas herdam de Evento. Isto define uma generalização de um conceito, pois Roteiro, Deslocamento e Pernoite
+são um tipo de Evento, e possuem características semelhantes entre sí, como a duração, por exemplo.
+
+Há uma relação de Agregação entre as classes Pacote e Evento, pois são duas classes que se completam,
+mas cada uma delas pode existir sem depender da outra.
