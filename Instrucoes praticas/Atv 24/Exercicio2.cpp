@@ -1,12 +1,12 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include "Cliente.h" 
-#include "Pacote.h"  
-#include "Evento.h"
 
 using namespace std;
-
+class Cliente;
+class Pacote;
+class Dependente;
+class Evento;
 class Cliente
 {
 private:
@@ -124,10 +124,8 @@ private:
   vector<Cliente *> clientes;
 
 public:
-  Pacote(string nome, vector<Evento *> eventos, vector<Cliente *> clientes) {
-    this->nome = nome;
-    this->eventos = {};
-    this->clientes = {};
+  Pacote()
+  {
   }
 
   string getNome()
@@ -135,12 +133,12 @@ public:
     return nome;
   }
 
-  vector<Evento *> &getEventos()
+  vector<Evento *> getEventos()
   {
     return eventos;
   }
 
-  vector<Cliente *> &getClientes()
+  vector<Cliente *> getClientes()
   {
     return clientes;
   }
@@ -252,13 +250,13 @@ public:
     char opcao;
 
     cout << "Defina o nome do Pacote: " << endl;
-    cin >> nome;
+    getline(cin, nome);
     pacote.setNome(nome);
     listarEventos(eventos);
     do
     {
       cout << "Digite o Evento que deseja adicionar ao Pacote ou '0' para sair: " << endl;
-      cin >> evento;
+      getline(cin, evento);
 
       if (evento == "0")
       {
@@ -283,6 +281,7 @@ public:
 
       cout << "Deseja adicionar outro evento? (S/N): ";
       cin >> opcao;
+      cin.ignore();
     } while (opcao == 'S' || opcao == 's');
 
     return pacote;
@@ -336,7 +335,7 @@ public:
     } while (opcao == 'S' || opcao == 's');
   }
 
-  void venderPacote(vector<Cliente> &clientes, vector<Pacote> &pacotes)
+  static void venderPacote(vector<Cliente> &clientes, vector<Pacote> &pacotes)
   {
     string cpf_cliente;
     string nome_pacote;
@@ -369,7 +368,7 @@ public:
     cout << "Cliente não encontrado." << endl;
   }
 
-  void listarClientes(vector<Cliente> &clientes, vector<Dependente> &dependentes)
+  static void listarClientes(vector<Cliente> &clientes, vector<Dependente> &dependentes)
   {
     cout << "Lista de clientes:" << endl;
     for (Cliente &cliente : clientes)
@@ -385,21 +384,30 @@ public:
     }
   }
 
-  void listarPacotes(vector<Pacote> &pacotes)
+  static void listarPacotes(vector<Pacote> &pacotes)
   {
     cout << "Lista de pacotes:" << endl;
     for (Pacote &pacote : pacotes)
     {
       cout << "Nome do pacote: " << pacote.getNome() << endl;
       cout << "Eventos do pacote:" << endl;
-      for (Evento *evento : pacote.getEventos())
+
+      if (!pacote.getEventos().empty())
       {
-        cout << "Nome do evento: " << evento->getNome() << ", Duração: " << evento->getDuracao() << " horas" << endl;
+        for (Evento *evento : pacote.getEventos())
+        {
+          cout << "Nome do evento: " << evento->getNome() << ", Duração: " << evento->getDuracao() << " horas" << endl;
+        }
       }
+      else
+      {
+        cout << "Nenhum evento adicionado no pacote." << endl;
+      }
+      cout << pacote.getEventos().size() << endl;
     }
   }
 
-  void consultarPacotesCliente(vector<Cliente> &clientes)
+  static void consultarPacotesCliente(vector<Cliente> &clientes)
   {
     string cpf_cliente;
     cout << "Digite o CPF do cliente: ";
@@ -437,7 +445,7 @@ public:
     }
   }
 
-  void consultarClientesPacote(vector<Pacote> &pacotes)
+  static void consultarClientesPacote(vector<Pacote> &pacotes)
   {
     string nome_pacote;
     cout << "Digite o nome do pacote: ";
@@ -485,20 +493,77 @@ int main()
   vector<Pacote> pacotes;
   vector<Cliente> clientes;
   vector<Dependente> dependentes;
-  char continuar;
-
-  do
-  {
-    eventos.push_back(SistemaTuristico::cadastrarEvento());
-    cout << "Deseja adicionar outro evento? (S/N): ";
-    cin >> continuar;
-  } while (continuar == 'S' || continuar == 's');
 
   eventos.push_back(Roteiro("Roteiro 1", 2.0));
   eventos.push_back(Deslocamento("Deslocamento 1", 3));
   eventos.push_back(Pernoite("Pernoite 1", 1));
-  pacotes.push_back(SistemaTuristico::criarPacote(eventos));
-  clientes.push_back(SistemaTuristico::criarCliente());
-  SistemaTuristico::criarDepedente(clientes, dependentes);
+  while (true)
+  {
+    cout << "Menu:" << endl;
+    cout << "1. Cadastrar evento" << endl;
+    cout << "2. Criar pacote" << endl;
+    cout << "3. Criar cliente" << endl;
+    cout << "4. Criar dependente" << endl;
+    cout << "5. Vender pacote a cliente" << endl;
+    cout << "6. Listar clientes" << endl;
+    cout << "7. Listar pacotes" << endl;
+    cout << "8. Listar eventos" << endl;
+    cout << "9. Consultar pacotes de um cliente" << endl;
+    cout << "10. Consultar clientes de um pacote" << endl;
+    cout << "11. Sair" << endl;
+
+    int escolha;
+    cout << "Escolha uma opção: ";
+    cin >> escolha;
+    cin.ignore();
+    switch (escolha)
+    {
+    case 1:
+      eventos.push_back(SistemaTuristico::cadastrarEvento());
+      break;
+
+    case 2:
+      pacotes.push_back(SistemaTuristico::criarPacote(eventos));
+      break;
+
+    case 3:
+      clientes.push_back(SistemaTuristico::criarCliente());
+      break;
+
+    case 4:
+      SistemaTuristico::criarDepedente(clientes, dependentes);
+      break;
+
+    case 5:
+      SistemaTuristico::venderPacote(clientes, pacotes);
+      break;
+
+    case 6:
+      SistemaTuristico::listarClientes(clientes, dependentes);
+      break;
+
+    case 7:
+      SistemaTuristico::listarPacotes(pacotes);
+      break;
+
+    case 8:
+      SistemaTuristico::listarEventos(eventos);
+      break;
+
+    case 9:
+      SistemaTuristico::consultarPacotesCliente(clientes);
+      break;
+
+    case 10:
+      SistemaTuristico::consultarClientesPacote(pacotes);
+      break;
+
+    case 11:
+      return 0;
+      
+    default:
+      cout << "Opção inválida." << endl;
+    }
+  }
   return 0;
 }

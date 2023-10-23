@@ -1,8 +1,8 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include "Cliente.h" 
-#include "Pacote.h"  
+#include "Cliente.h"
+#include "Pacote.h"
 #include "Evento.h"
 
 using namespace std;
@@ -124,7 +124,8 @@ private:
   vector<Cliente *> clientes;
 
 public:
-  Pacote(string nome, vector<Evento *> eventos, vector<Cliente *> clientes) {
+  Pacote(string nome, vector<Evento *> eventos, vector<Cliente *> clientes)
+  {
     this->nome = nome;
     this->eventos = {};
     this->clientes = {};
@@ -481,6 +482,7 @@ public:
 
 int main()
 {
+  SistemaTuristico sistema;
   vector<Evento> eventos;
   vector<Pacote> pacotes;
   vector<Cliente> clientes;
@@ -500,5 +502,58 @@ int main()
   pacotes.push_back(SistemaTuristico::criarPacote(eventos));
   clientes.push_back(SistemaTuristico::criarCliente());
   SistemaTuristico::criarDepedente(clientes, dependentes);
+  
+  eventos.push_back(Roteiro("Roteiro 1", 2.0));
+  eventos.push_back(Deslocamento("Deslocamento 1", 3));
+  eventos.push_back(Pernoite("Pernoite 1", 1));
+  while (true)
+  {
+    cout << "Menu:" << endl;
+    cout << "1. Cadastrar evento" << endl;
+    cout << "2. Criar pacote" << endl;
+    cout << "3. Criar cliente" << endl;
+    cout << "4. Vender pacote a cliente" << endl;
+    cout << "5. Listar clientes" << endl;
+    cout << "6. Listar pacotes" << endl;
+    cout << "7. Consultar pacotes de um cliente" << endl;
+    cout << "8. Consultar clientes de um pacote" << endl;
+    cout << "9. Sair" << endl;
+
+    int escolha;
+    cout << "Escolha uma opção: ";
+    cin >> escolha;
+
+    switch (escolha)
+    {
+    case 1:
+      sistema.cadastrarEvento();
+      break;
+    case 2:
+      sistema.criarPacote();
+      break;
+    case 3:
+      sistema.criarCliente();
+      break;
+    case 4:
+      sistema.venderPacote();
+      break;
+    case 5:
+      sistema.listarClientes();
+      break;
+    case 6:
+      sistema.listarPacotes();
+      break;
+    case 7:
+      sistema.consultarPacotesCliente(Cliente("Exemplo Cliente", "12345678900"));
+      break;
+    case 8:
+      sistema.consultarClientesPacote(Pacote("Exemplo Pacote"));
+      break;
+    case 9:
+      return 0;
+    default:
+      cout << "Opção inválida." << endl;
+    }
+  }
   return 0;
 }
