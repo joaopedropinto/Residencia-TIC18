@@ -180,7 +180,7 @@ class Pernoite : public Evento
 {
 
 public:
-  Pernoite(string nome, double distancia) : Evento(nome, distancia)
+  Pernoite(string nome, double duracao) : Evento(nome, duracao)
   {
   }
 };
@@ -202,6 +202,7 @@ public:
            << "3 - Pernoite\n"
            << "4 - Sair\n";
       cin >> opcao;
+      cin.ignore();
 
       string nome;
       double duracao;
@@ -210,7 +211,7 @@ public:
       {
       case 1:
         cout << "Digite o nome do Roteiro: " << endl;
-        cin >> nome;
+        getline(cin, nome);
         cout << "Digite a duração do Roteiro: " << endl;
         cin >> duracao;
         return Roteiro(nome, duracao);
@@ -218,7 +219,7 @@ public:
 
       case 2:
         cout << "Digite o nome do Deslocamento: ";
-        cin >> nome;
+        getline(cin, nome);
         cout << "Digite a duração do Deslocamento: ";
         cin >> duracao;
         return Deslocamento(nome, duracao);
@@ -226,9 +227,10 @@ public:
 
       case 3:
         cout << "Digite o nome da Pernoite: ";
-        cin >> nome;
+        getline(cin, nome);
         cout << "Digite a duração da Pernoite: ";
         cin >> duracao;
+
         return Pernoite(nome, duracao);
         break;
 
@@ -300,7 +302,7 @@ public:
     return Cliente(nome, cpf);
   }
 
-  static Dependente criarDepedente(vector<Cliente> clientes, vector<Dependente> &dependentes)
+  static Dependente criarDependente(vector<Cliente> clientes, vector<Dependente> &dependentes)
   {
     char opcao;
     string nomeDependente, nomeCliente;
@@ -391,19 +393,10 @@ public:
     {
       cout << "Nome do pacote: " << pacote.getNome() << endl;
       cout << "Eventos do pacote:" << endl;
-
-      if (!pacote.getEventos().empty())
+      for (Evento *evento : pacote.getEventos())
       {
-        for (Evento *evento : pacote.getEventos())
-        {
-          cout << "Nome do evento: " << evento->getNome() << ", Duração: " << evento->getDuracao() << " horas" << endl;
-        }
+        cout << "Nome do evento: " << evento->getNome() << ", Duração: " << evento->getDuracao() << " horas" << endl;
       }
-      else
-      {
-        cout << "Nenhum evento adicionado no pacote." << endl;
-      }
-      cout << pacote.getEventos().size() << endl;
     }
   }
 
@@ -449,7 +442,7 @@ public:
   {
     string nome_pacote;
     cout << "Digite o nome do pacote: ";
-    cin >> nome_pacote;
+    getline(cin, nome_pacote);
     bool pacoteEncontrado = false;
     for (Pacote &pacote : pacotes)
     {
@@ -531,7 +524,7 @@ int main()
       break;
 
     case 4:
-      SistemaTuristico::criarDepedente(clientes, dependentes);
+      SistemaTuristico::criarDependente(clientes, dependentes);
       break;
 
     case 5:
@@ -560,7 +553,7 @@ int main()
 
     case 11:
       return 0;
-      
+
     default:
       cout << "Opção inválida." << endl;
     }
