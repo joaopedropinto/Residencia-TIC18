@@ -1,3 +1,4 @@
+//Gregue
 #include <iostream>
 #include <vector>
 #include <string>
@@ -50,7 +51,9 @@ public:
     this->cpf = cpf;
   }
 };
+//Gregue
 
+//Gabriel
 class Dependente
 {
 private:
@@ -115,7 +118,9 @@ public:
     this->duracao = duracao;
   }
 };
+//Gabriel
 
+//Kayque
 class Pacote
 {
 private:
@@ -184,7 +189,9 @@ public:
   {
   }
 };
+//Kayque
 
+//João
 class SistemaTuristico
 {
 
@@ -479,6 +486,7 @@ public:
     }
   }
 };
+//João
 
 int main()
 {
