@@ -127,7 +127,7 @@ public:
 	{
 		if (lista.empty())
 		{
-			cout << "" << endl;
+			cout << "";
 		}
 		else
 		{
@@ -147,7 +147,7 @@ public:
 	{
 		if (lista.empty())
 		{
-			cout << "" << endl;
+			cout << "";
 		}
 		else
 		{
@@ -159,7 +159,7 @@ public:
 	{
 		if (lista.empty())
 		{
-			cout << "" << endl;
+			cout << "";
 		}
 		else
 		{
@@ -200,9 +200,14 @@ public:
 	void mostraMediana() const override
 	{
 		if (lista.empty())
-			cout << "" << endl;
-		size_t posicaoMeio = lista.size() / 2;
-		cout << ((lista.size() % 2 == 0) ? lista[posicaoMeio - 1] : lista[posicaoMeio]);
+		{
+			cout << "";
+		}
+		else
+		{
+			size_t posicaoMeio = lista.size() / 2;
+			cout << ((lista.size() % 2 == 0) ? lista[posicaoMeio - 1] : lista[posicaoMeio]);
+		}
 	}
 	void mostraMaior() const override
 	{
@@ -245,17 +250,36 @@ public:
 	void mostraMediana() const override
 	{
 		if (lista.empty())
-			cout << "" << endl;
-		size_t posicaoMeio = lista.size() / 2;
-		cout << ((lista.size() % 2 == 0) ? lista[posicaoMeio - 1] : lista[posicaoMeio]);
+		{
+			cout << "";
+		}
+		else
+		{
+			size_t posicaoMeio = lista.size() / 2;
+			cout << ((lista.size() % 2 == 0) ? lista[posicaoMeio - 1] : lista[posicaoMeio]);
+		}
 	}
 	void mostraMaior() const override
 	{
-		cout << (*max_element(this->lista.begin(), this->lista.end()));
+		if (lista.empty())
+		{
+			cout << "";
+		}
+		else
+		{
+			cout << (*max_element(this->lista.begin(), this->lista.end()));
+		}
 	}
 	void mostraMenor() const override
 	{
-		cout << (*min_element(this->lista.begin(), this->lista.end()));
+		if (lista.empty())
+		{
+			cout << "";
+		}
+		else
+		{
+			cout << (*min_element(this->lista.begin(), this->lista.end()));
+		}
 	}
 	void listarEmOrdem() const override
 	{
@@ -290,17 +314,36 @@ public:
 	void mostraMediana() const override
 	{
 		if (lista.empty())
-			cout << "" << endl;
-		size_t posicaoMeio = lista.size() / 2;
-		cout << ((lista.size() % 2 == 0) ? lista[posicaoMeio - 1] : lista[posicaoMeio]);
+		{
+			cout << "";
+		}
+		else
+		{
+			size_t posicaoMeio = lista.size() / 2;
+			cout << ((lista.size() % 2 == 0) ? lista[posicaoMeio - 1] : lista[posicaoMeio]);
+		}
 	}
 	void mostraMaior() const override
 	{
-		cout << (*max_element(this->lista.begin(), this->lista.end()));
+		if (lista.empty())
+		{
+			cout << "";
+		}
+		else
+		{
+			cout << (*max_element(this->lista.begin(), this->lista.end()));
+		}
 	}
 	void mostraMenor() const override
 	{
-		cout << (*min_element(this->lista.begin(), this->lista.end()));
+		if (lista.empty())
+		{
+			cout << "";
+		}
+		else
+		{
+			cout << (*min_element(this->lista.begin(), this->lista.end()));
+		}
 	}
 	void listarEmOrdem() const override
 	{
@@ -393,7 +436,7 @@ int main()
 			}
 			break;
 		case 7:
-			cout << "Exibindo mediana, maior e menor valor de cada lista:\n";
+			cout << "Exibindo mediana, maior e menor valor de cada lista:\n\n";
 			for (Lista *l : listaDeListas)
 			{
 				cout << "Mediana: ";
