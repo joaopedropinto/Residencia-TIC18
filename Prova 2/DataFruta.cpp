@@ -57,14 +57,9 @@ public:
 
 	string toString() const
 	{
-		string ret = "";
-		ret.append(to_string(dia));
-		ret.append("/");
-		ret.append(to_string(mes));
-		ret.append("/");
-		ret.append(to_string(ano));
-		return ret;
+		return to_string(dia) + "/" + to_string(mes) + "/" + to_string(ano);
 	}
+
 	static void CriaData(string d1, string d2)
 	{
 		int diaExtraido, mesExtraido, anoExtraido, resultado;
@@ -84,7 +79,7 @@ public:
 		{
 			cout << "A data " << d1 << " é maior que a data " << d2 << "." << endl;
 		}
-		else if (resultado == 0)
+		else
 		{
 			cout << "As datas " << d1 << " e " << d2 << " são iguais." << endl;
 		}
@@ -100,6 +95,7 @@ public:
 	virtual void mostraMenor() const = 0;
 	virtual void listarEmOrdem() const = 0;
 	virtual void exibirPrimeirosN(size_t quantidade) const = 0;
+	virtual bool estaVazia() const = 0;
 	virtual ~Lista() {}
 };
 
@@ -145,11 +141,7 @@ public:
 
 	void mostraMaior() const override
 	{
-		if (lista.empty())
-		{
-			cout << "";
-		}
-		else
+		if (!lista.empty())
 		{
 			cout << lista.back().toString();
 		}
@@ -157,11 +149,7 @@ public:
 
 	void mostraMenor() const override
 	{
-		if (lista.empty())
-		{
-			cout << "";
-		}
-		else
+		if (!lista.empty())
 		{
 			cout << lista.front().toString();
 		}
@@ -184,6 +172,11 @@ public:
 		}
 		cout << endl;
 	}
+
+	bool estaVazia() const override
+	{
+		return lista.empty();
+	}
 };
 
 class ListaNomes : public Lista
@@ -197,6 +190,7 @@ public:
 		lista.push_back(valor);
 		sort(lista.begin(), lista.end());
 	}
+
 	void mostraMediana() const override
 	{
 		if (lista.empty())
@@ -205,18 +199,34 @@ public:
 		}
 		else
 		{
-			size_t posicaoMeio = lista.size() / 2;
-			cout << ((lista.size() % 2 == 0) ? lista[posicaoMeio - 1] : lista[posicaoMeio]);
+			size_t posicaoDoMeio = lista.size() / 2;
+			if (lista.size() % 2 == 0)
+			{
+				cout << lista[posicaoDoMeio - 1];
+			}
+			else
+			{
+				cout << lista[posicaoDoMeio];
+			}
 		}
 	}
+
 	void mostraMaior() const override
 	{
-		cout << (lista.empty() ? "" : lista.back());
+		if (!lista.empty())
+		{
+			cout << lista.back();
+		}
 	}
+
 	void mostraMenor() const override
 	{
-		cout << (lista.empty() ? "" : lista.front());
+		if (!lista.empty())
+		{
+			cout << lista.front();
+		}
 	}
+
 	void listarEmOrdem() const override
 	{
 		for (const string &nome : lista)
@@ -225,28 +235,36 @@ public:
 		}
 		cout << endl;
 	}
+
 	void exibirPrimeirosN(size_t quantidade) const override
 	{
-		for (size_t i = 0; i < min(quantidade, lista.size()); ++i)
+		for (size_t i = 0; i < min(quantidade, lista.size()); i++)
 		{
 			cout << lista[i] << " ";
 		}
 		cout << endl;
+	}
+
+	bool estaVazia() const override
+	{
+		return lista.empty();
 	}
 };
 
 class ListaSalarios : public Lista
 {
 private:
-	vector<float> lista;
+	vector<double> lista;
 
 public:
 	void entradaDeDados(const string &valor) override
 	{
-
-		lista.push_back(stof(valor));
+		double salario;
+		sscanf(valor.c_str(), "%lf", &salario);
+		lista.push_back(salario);
 		sort(lista.begin(), lista.end());
 	}
+
 	void mostraMediana() const override
 	{
 		if (lista.empty())
@@ -255,48 +273,55 @@ public:
 		}
 		else
 		{
-			size_t posicaoMeio = lista.size() / 2;
-			cout << ((lista.size() % 2 == 0) ? lista[posicaoMeio - 1] : lista[posicaoMeio]);
+			size_t posicaoDoMeio = lista.size() / 2;
+			if (lista.size() % 2 == 0)
+			{
+				cout << (lista[posicaoDoMeio - 1] + lista[posicaoDoMeio]) / 2.0;
+			}
+			else
+			{
+				cout << lista[posicaoDoMeio];
+			}
 		}
 	}
+
 	void mostraMaior() const override
 	{
-		if (lista.empty())
+		if (!lista.empty())
 		{
-			cout << "";
-		}
-		else
-		{
-			cout << (*max_element(this->lista.begin(), this->lista.end()));
+			cout << lista.back();
 		}
 	}
+
 	void mostraMenor() const override
 	{
-		if (lista.empty())
+		if (!lista.empty())
 		{
-			cout << "";
-		}
-		else
-		{
-			cout << (*min_element(this->lista.begin(), this->lista.end()));
+			cout << lista.front();
 		}
 	}
+
 	void listarEmOrdem() const override
 	{
-		// sort(lista.begin(), lista.end());
-		for (const float &salario : lista)
+		for (double salario : lista)
 		{
 			cout << salario << " ";
 		}
 		cout << endl;
 	}
+
 	void exibirPrimeirosN(size_t quantidade) const override
 	{
-		for (size_t i = 0; i < min(quantidade, lista.size()); ++i)
+		for (size_t i = 0; i < min(quantidade, lista.size()); i++)
 		{
 			cout << lista[i] << " ";
 		}
 		cout << endl;
+	}
+
+	bool estaVazia() const override
+	{
+		return lista.empty();
 	}
 };
 
@@ -308,9 +333,12 @@ private:
 public:
 	void entradaDeDados(const string &valor) override
 	{
-		lista.push_back(stoi(valor));
+		int idade;
+		sscanf(valor.c_str(), "%d", &idade);
+		lista.push_back(idade);
 		sort(lista.begin(), lista.end());
 	}
+
 	void mostraMediana() const override
 	{
 		if (lista.empty())
@@ -319,48 +347,55 @@ public:
 		}
 		else
 		{
-			size_t posicaoMeio = lista.size() / 2;
-			cout << ((lista.size() % 2 == 0) ? lista[posicaoMeio - 1] : lista[posicaoMeio]);
+			size_t posicaoDoMeio = lista.size() / 2;
+			if (lista.size() % 2 == 0)
+			{
+				cout << (lista[posicaoDoMeio - 1] + lista[posicaoDoMeio]) / 2;
+			}
+			else
+			{
+				cout << lista[posicaoDoMeio];
+			}
 		}
 	}
+
 	void mostraMaior() const override
 	{
-		if (lista.empty())
+		if (!lista.empty())
 		{
-			cout << "";
-		}
-		else
-		{
-			cout << (*max_element(this->lista.begin(), this->lista.end()));
+			cout << lista.back();
 		}
 	}
+
 	void mostraMenor() const override
 	{
-		if (lista.empty())
+		if (!lista.empty())
 		{
-			cout << "";
-		}
-		else
-		{
-			cout << (*min_element(this->lista.begin(), this->lista.end()));
+			cout << lista.front();
 		}
 	}
+
 	void listarEmOrdem() const override
 	{
-		// sort(this->lista.begin(), this->lista.end());
-		for (const int &idade : lista)
+		for (int idade : lista)
 		{
 			cout << idade << " ";
 		}
 		cout << endl;
 	}
+
 	void exibirPrimeirosN(size_t quantidade) const override
 	{
-		for (size_t i = 0; i < min(quantidade, lista.size()); ++i)
+		for (size_t i = 0; i < min(quantidade, lista.size()); i++)
 		{
 			cout << lista[i] << " ";
 		}
 		cout << endl;
+	}
+
+	bool estaVazia() const override
+	{
+		return lista.empty();
 	}
 };
 
@@ -401,7 +436,7 @@ int main()
 		switch (opcao)
 		{
 		case 1:
-			cout << "Digite a data: ";
+			cout << "Digite a data(dd/mm/aaaa): ";
 			getline(cin, valor);
 			listaData.entradaDeDados(valor);
 			break;
@@ -437,21 +472,25 @@ int main()
 			break;
 		case 7:
 			cout << "Exibindo mediana, maior e menor valor de cada lista:\n\n";
+
 			for (Lista *l : listaDeListas)
 			{
-				cout << "Mediana: ";
-				l->mostraMediana();
-				cout << "\nMaior: ";
-				l->mostraMaior();
-				cout << "\nMenor: ";
-				l->mostraMenor();
-				cout << "\n-------------------\n";
+				if (!l->estaVazia()) // Suponhamos que 'estaVazia' é um método que verifica se a lista está vazia
+				{
+					cout << "Mediana: ";
+					l->mostraMediana();
+					cout << "\nMaior: ";
+					l->mostraMaior();
+					cout << "\nMenor: ";
+					l->mostraMenor();
+					cout << "\n-------------------\n";
+				}
 			}
 			break;
 		case 8:
-			cout << "Insira a primeira data: ";
+			cout << "Insira a primeira data(dd/mm/aaaa): ";
 			cin >> d1;
-			cout << "Insira a segunda data: ";
+			cout << "Insira a segunda data(dd/mm/aaaa): ";
 			cin >> d2;
 			Data::CriaData(d1, d2);
 			break;
